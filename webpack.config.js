@@ -76,14 +76,14 @@ module.exports = {
         inject: "body",
         filename: "index.html",
       }),
-      new copyPlugin({
-        patterns: [
-          {
-            from: path.resolve(__dirname, "src/assets/images"),
-            to: path.resolve(__dirname, "dist/assets/images"),
-          },
-        ],
-      }),
+      // new copyPlugin({
+      //   patterns: [
+      //     {
+      //       from: path.resolve(__dirname, "src/assets/images"),
+      //       to: path.resolve(__dirname, "dist/assets/images"),
+      //     },
+      //   ],
+      // }),
       /* app uses global SERVER_URL rather than process.env.SERVER_URL */
       new webpack.DefinePlugin({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
