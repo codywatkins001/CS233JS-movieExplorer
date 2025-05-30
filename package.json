@@ -1,7 +1,7 @@
-{
+{  
   "name": "movie-explorer",
   "version": "1.0.0",
-  "description": "",
+  "description": "Discover movies by genre and year using TMDb API",
   "main": "index.html",
   "scripts": {
     "webpack": "webpack",
@@ -27,7 +27,7 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1",
+    "webpack-dev-server": "^4.15.2",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
