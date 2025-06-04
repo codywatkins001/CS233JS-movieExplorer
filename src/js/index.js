@@ -9,15 +9,19 @@ import '../css/style.css';
 const genreSelectEl = document.getElementById('genre');
 
 async function fetchGenres() {
-  const apiKey = api_key;
-  const baseUrl = url;
+  const url = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
 
-  const endpoint = `${baseUrl}/genre/movie/list?api_key=${apiKey}&language=en-US`;
-  console.log("Fetching from:", endpoint);
-  
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${bearer_token}` // Injected by DefinePlugin
+    }
+  };
+
   try {
-    const response = await fetch(endpoint);
-    const data = await response.json();
+    const res = await fetch(url, options);
+    const data = await res.json();
 
     if (data.genres && data.genres.length > 0) {
       genreSelectEl.innerHTML += data.genres.map(genre => `
@@ -26,8 +30,8 @@ async function fetchGenres() {
     } else {
       genreSelectEl.innerHTML += `<option disabled>No genres found</option>`;
     }
-  } catch (error) {
-    console.error("Error fetching genres:", error);
+  } catch (err) {
+    console.error("Error fetching genres:", err);
     genreSelectEl.innerHTML += `<option disabled>Error loading genres</option>`;
   }
 }
