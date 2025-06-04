@@ -15,7 +15,7 @@ async function fetchGenres() {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${bearer_token}` // Injected by DefinePlugin
+      Authorization: `Bearer ${bearer_token}`
     }
   };
 
