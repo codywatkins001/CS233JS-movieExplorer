@@ -87,8 +87,8 @@ module.exports = {
       /* app uses global SERVER_URL rather than process.env.SERVER_URL */
       new webpack.DefinePlugin({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        SERVER_URL: JSON.stringify(process.env.SERVER_URL),
-        GMAP_KEY: JSON.stringify(process.env.GMAP_KEY),
+        url: JSON.stringify(process.env.url),
+        bearer_token: JSON.stringify(process.env.bearer_token),
       }),
     ],
     /* separates js (and css) that is shared between bundles - allows browser to cache */
