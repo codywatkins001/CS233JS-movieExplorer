@@ -30,8 +30,10 @@ module.exports = {
       clean: true,
     },
     target: 'web',
-    devServer: { 
-      static: "./dist"
+    devServer: {
+    static: "./dist",
+    port: 8080,
+    hot: true,
     }, 
     /* no separate source map files in production */
     devtool: !isProduction ? 'source-map' : 'inline-source-map', 
@@ -88,7 +90,7 @@ module.exports = {
       new webpack.DefinePlugin({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         url: JSON.stringify(process.env.url),
-        bearer_token: JSON.stringify(process.env.bearer_token),
+        BEARER_TOKEN: JSON.stringify(process.env.bearer_token),
       }),
     ],
     /* separates js (and css) that is shared between bundles - allows browser to cache */
