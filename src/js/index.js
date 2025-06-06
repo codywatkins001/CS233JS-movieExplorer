@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class TMDBClient {
   constructor(apiUrl, bearerToken) {
     this.apiUrl = apiUrl;
@@ -68,19 +70,27 @@ class TMDBClient {
   }
 
   renderMovies(movies) {
-    if (!movies || movies.length === 0) {
-      this.resultsEl.innerHTML = `<p>No movies found.</p>`;
-      return;
-    }
-
-    this.resultsEl.innerHTML = movies.map(movie => `
-      <div class="movie-card">
-        <h3>${movie.title} (${new Date(movie.release_date).getFullYear() || 'N/A'})</h3>
-        <p>Rating: ${movie.vote_average}</p>
-        <p>${movie.overview}</p>
-      </div>
-    `).join('');
+  if (!movies || movies.length === 0) {
+    this.resultsEl.innerHTML = `<p>No movies found.</p>`;
+    return;
   }
+
+  this.resultsEl.innerHTML = movies.map(movie => `
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+      <img src="${movie.poster_path ? 'https://image.tmdb.org/t/p/w300' + movie.poster_path : 'https://via.placeholder.com/300x450?text=No+Image'}"class="card-img-top" alt="${movie.title}">
+        <div class="card-body">
+          <h5 class="card-title">${movie.title} (${new Date(movie.release_date).getFullYear() || 'N/A'})</h5>
+          <p class="card-text">${movie.overview}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Rating: ${movie.vote_average}</small>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
 
   setupEventListeners() {
     this.searchBtn.addEventListener('click', () => {
@@ -96,7 +106,6 @@ class TMDBClient {
   }
 }
 
-// Usage: replace `url` and `bearer_token` with your actual values or from environment variables
 const url = 'https://api.themoviedb.org/3';
 const bearer_token = BEARER_TOKEN;
 
